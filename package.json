@@ -1,0 +1,43 @@
+{
+  "name": "boilerplate-webapp",
+  "version": "1.0.0",
+  "description": "Boilerplate for webapp",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alecla/boilerplate-webapp.git"
+  },
+  "author": "Alexander Claeson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alecla/boilerplate-webapp/issues"
+  },
+  "homepage": "https://github.com/alecla/boilerplate-webapp#readme",
+  "devDependencies": {
+    "angular": "^1.4.9",
+    "bootstrap-less": "^3.3.8",
+    "browserify": "^13.0.0",
+    "express": "^4.13.4",
+    "imagemin": "^4.0.0",
+    "jshint": "^2.9.1",
+    "less": "^2.6.0",
+    "nodemon": "^1.8.1",
+    "serve": "^1.4.0",
+    "uglify": "^0.1.5"
+  },
+  "scripts": {
+    "info": "echo 'npm as a build tool'",
+    "server": "node server.js",
+    "stop-server": "killall node",
+    "lint": "echo '=> linting' && jshint dev/js/global.js",
+    "build-js": "browserify dev/js/global.js -o dist/js/global.js",
+    "build-min-js": "browserify dev/js/global.js | uglify -o dist/js/global.min.js",
+    "build-less": "lessc dev/css/main.less > dist/css/main.css",
+    "build-min-less": "lessc dev/css/main.less > dist/css/main.css | cleancss dist/css/main.css -o dist/css/main.min.css",
+    "watch-js": "npm run lint | nodemon -e js -w dev/js/ -x 'npm run build-js'",
+    "watch-less": "nodemon -e less -w dist/css -x 'npm run build-less'",
+    "build": "npm run build-js & npm run build-less",
+    "watch": "node server & npm run watch-js & npm run watch-less",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
